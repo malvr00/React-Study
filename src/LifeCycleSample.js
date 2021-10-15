@@ -12,7 +12,7 @@ export class LifeCycleSample extends Component {
     super(props);
     console.log("constructor");
   }
-
+  // 부모에게서 받은 color 값을 state에 동기화
   static getDerivedStateFromProps(nextProps, prevState) {
     console.log("getDerivedStateFromProps");
     if (nextProps.color !== prevState.color) {
@@ -42,7 +42,7 @@ export class LifeCycleSample extends Component {
       number: this.state.number + 1,
     });
   };
-
+  // DOM에 변화가 일어나기 직전의 색상속성을 snapshot값으로 반환한다.
   getSnapshotBeforeUpdate(prevProps, prevState) {
     console.log("getSnapshotBeforUpdate");
     if (prevProps.color !== this.props.color) {
@@ -50,7 +50,7 @@ export class LifeCycleSample extends Component {
     }
     return null;
   }
-
+  // snapshot 확인
   componentDidUpdate(prevProps, prevState, snapshot) {
     console.log("componentDidUpdate", prevProps, prevState);
     if (snapshot) {
