@@ -4,6 +4,7 @@ import { Modal, Button, Row, Col, Form, Card, Table } from "react-bootstrap";
 import axios from "axios";
 import { axiosUrlFunction, tokenCheck } from "utils/AxiosUrl";
 
+// 단일 선택
 export const SelectProgramOnCheckPopup = (props) => {
   const [list, setList] = useState([
     {
