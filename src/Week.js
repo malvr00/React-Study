@@ -64,3 +64,54 @@
     }
     setWeekList(week);
   };
+
+
+// 주차별 금액 출력
+ const viewAmount = (name) => {
+    const result = [];
+    let z = 0;
+    for (let i = 0; i < list.length; i++) {
+      if (name === list[i].store_name) {
+        for (let j = z; j < weekList.length; j++) {
+          if (list[i].start !== null) {
+            const content =
+              list[i].calculate_check === "Y" ? "정산완료" : "정산미완료";
+            const style = {
+              color: list[i].calculate_check === "Y" ? "blue" : "red",
+            };
+            if (weekList[j].slice(9, 14) === list[i].start.slice(5, 10)) {
+              result.push(<th key={uuid()}>{list[i].amount}</th>);
+              result.push(
+                <th
+                  key={uuid()}
+                  id={list[i].store_calculate_id}
+                  style={style}
+                  onClick={() =>
+                    calculateHandler(list[i].store_calculate_id, i)
+                  }
+                  className="cursor"
+                >
+                  {content}
+                </th>
+              );
+              z++;
+              break;
+            } else {
+              result.push(<th key={uuid()}>0</th>);
+              result.push(
+                <th key={uuid()} style={{ color: "red" }}>
+                  정산미완료
+                </th>
+              );
+            }
+          } else {
+            result.push(<th key={uuid()}>0</th>);
+            result.push(
+              <th key={uuid()} style={{ color: "red" }}>
+                정산미완료
+              </th>
+            );
+          }
+        }
+      }
+    }
